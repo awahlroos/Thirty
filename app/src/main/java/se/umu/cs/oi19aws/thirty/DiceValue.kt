@@ -2,26 +2,24 @@ package se.umu.cs.oi19aws.thirty
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.util.Log
 
 class DiceValue() : Parcelable {
 
-    var diceValueArray = ArrayList<Int>()
+    var diceValueArray = IntArray(6)
     private set
-
-    fun addToArray(value:Int){
-        diceValueArray.add(value)
-    }
 
     fun replaceInArray(value:Int, pos:Int){
         diceValueArray[pos] = value
     }
 
     constructor(parcel: Parcel) : this() {
-        diceValueArray = parcel.readArrayList(Int::class.java.classLoader) as ArrayList<Int>
+        diceValueArray = parcel.createIntArray()!!
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeArray(arrayOf(diceValueArray))
+        parcel.writeIntArray(diceValueArray)
+        //parcel.writeArray(arrayOf(diceValueArray))
     }
 
     override fun describeContents(): Int {
