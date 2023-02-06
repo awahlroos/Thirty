@@ -1,3 +1,41 @@
 <resources>
     <string name="app_name">Thirty</string>
+
+    <!-- game.xml -->
+    <string name="throw_btn">Throw</string>
+    <string name="rounds_left">Rounds left:</string>
+    <string name="throws_left">Throws left:</string>
+    <string name="sum_low">LOW</string>
+    <string name="sum_4">4</string>
+    <string name="sum_5">5</string>
+    <string name="sum_6">6</string>
+    <string name="sum_7">7</string>
+    <string name="sum_8">8</string>
+    <string name="sum_9">9</string>
+    <string name="sum_10">10</string>
+    <string name="sum_11">11</string>
+    <string name="sum_12">12</string>
+
+    <!-- results.xml -->
+    <string name="results">Results</string>
+    <string name="choice">(for %1$s)</string>
+    <string name="rounds">Round %1$d - (%2$s):</string>
+    <!--
+    <string name="round_1">Round 1:</string>
+    <string name="round_2">Round 2:</string>
+    <string name="round_3">Round 3:</string>
+    <string name="round_4">Round 4:</string>
+    <string name="round_5">Round 5:</string>
+    <string name="round_6">Round 6:</string>
+    <string name="round_7">Round 7:</string>
+    <string name="round_8">Round 8:</string>
+    <string name="round_9">Round 9:</string>
+    <string name="round_10">Round 10:</string>
+    -->
+    <string name="dots">.........</string>
+    <string name="total">Total:</string>
+    <string name="play_again">Play again</string>
+
+
+
 </resources>

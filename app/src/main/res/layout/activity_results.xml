@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/results"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserratbold"
+        android:text="@string/results"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35000002">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/round1"
+                    style="@style/ResultStyledTV" />
+
+                <TextView
+                    android:id="@+id/round2"
+                    style="@style/ResultStyledTV" />
+
+                <TextView
+                    android:id="@+id/round3"
+                    style="@style/ResultStyledTV" />
+
+                <TextView
+                    android:id="@+id/round4"
+                    style="@style/ResultStyledTV" />
+
+                <TextView
+                    android:id="@+id/round5"
+                    style="@style/ResultStyledTV" />
+
+                <TextView
+                    android:id="@+id/round6"
+                    style="@style/ResultStyledTV" />
+
+                <TextView
+                    android:id="@+id/round7"
+                    style="@style/ResultStyledTV" />
+
+                <TextView
+                    android:id="@+id/round8"
+                    style="@style/ResultStyledTV" />
+
+                <TextView
+                    android:id="@+id/round9"
+                    style="@style/ResultStyledTV" />
+
+                <TextView
+                    android:id="@+id/round10"
+                    style="@style/ResultStyledTV" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/dot1"
+                    style="@style/ResultStyledTV"
+                    android:text="@string/dots" />
+
+                <TextView
+                    android:id="@+id/dot2"
+                    style="@style/ResultStyledTV"
+                    android:text="@string/dots" />
+
+                <TextView
+                    android:id="@+id/dot3"
+                    style="@style/ResultStyledTV"
+                    android:text="@string/dots" />
+
+                <TextView
+                    android:id="@+id/dot4"
+                    style="@style/ResultStyledTV"
+                    android:text="@string/dots" />
+
+                <TextView
+                    android:id="@+id/dot5"
+                    style="@style/ResultStyledTV"
+                    android:text="@string/dots" />
+
+                <TextView
+                    android:id="@+id/dot6"
+                    style="@style/ResultStyledTV"
+                    android:text="@string/dots" />
+
+                <TextView
+                    android:id="@+id/dot7"
+                    style="@style/ResultStyledTV"
+                    android:text="@string/dots" />
+
+                <TextView
+                    android:id="@+id/dot8"
+                    style="@style/ResultStyledTV"
+                    android:text="@string/dots" />
+
+                <TextView
+                    android:id="@+id/dot9"
+                    style="@style/ResultStyledTV"
+                    android:text="@string/dots" />
+
+                <TextView
+                    android:id="@+id/dot10"
+                    style="@style/ResultStyledTV"
+                    android:text="@string/dots" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout4">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/res1"
+                    style="@style/ResultStyledTV"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/res2"
+                    style="@style/ResultStyledTV"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/res3"
+                    style="@style/ResultStyledTV"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/res4"
+                    style="@style/ResultStyledTV"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/res5"
+                    style="@style/ResultStyledTV"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/res6"
+                    style="@style/ResultStyledTV"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/res7"
+                    style="@style/ResultStyledTV"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/res8"
+                    style="@style/ResultStyledTV"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/res9"
+                    style="@style/ResultStyledTV"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/res10"
+                    style="@style/ResultStyledTV"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout5"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout5"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout5"
+        android:layout_marginLeft="20dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/opt1"
+                style="@style/ResultStyledTV"
+                android:textColor="@color/dark_gray" />
+
+            <TextView
+                android:id="@+id/opt2"
+                style="@style/ResultStyledTV"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/opt3"
+                style="@style/ResultStyledTV"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/opt4"
+                style="@style/ResultStyledTV"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/opt5"
+                style="@style/ResultStyledTV"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/opt6"
+                style="@style/ResultStyledTV"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/opt7"
+                style="@style/ResultStyledTV"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/opt8"
+                style="@style/ResultStyledTV"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/opt9"
+                style="@style/ResultStyledTV"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/opt10"
+                style="@style/ResultStyledTV"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/play_again_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/montserratsemibold"
+        android:paddingHorizontal="50dp"
+        android:stateListAnimator="@null"
+        android:text="@string/play_again"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+
+
+        <TextView
+            android:id="@+id/total"
+            style="@style/ResultStyledTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/total_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:fontFamily="@font/montserratblack"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/total"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
