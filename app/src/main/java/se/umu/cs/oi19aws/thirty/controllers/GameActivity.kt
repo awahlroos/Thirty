@@ -7,8 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import se.umu.cs.oi19aws.thirty.models.Dice
 import se.umu.cs.oi19aws.thirty.R
+import se.umu.cs.oi19aws.thirty.models.*
 
 /**
  * GameActivity
@@ -19,6 +19,11 @@ class GameActivity : AppCompatActivity(){
     private var sumChoiceList = ArrayList<AppCompatButton>()
     private val diceList = ArrayList<ImageButton>()
     private var dice = Dice()
+    private var counter = Counter()
+    private var chosenOptions = ChosenOptions()
+    private var diceValues = DiceValue()
+    private var chosenOption = ArrayList<Int>()
+    private var scoreboard = Scoreboard()
 
     private lateinit var throwButton:AppCompatButton
 
@@ -54,8 +59,8 @@ class GameActivity : AppCompatActivity(){
         throwsLeftTV = findViewById(R.id.nr_of_throws_left)
 
         //Set number of rounds and throws left
-        roundsLeftTV.text = dice.counter.roundCounter.toString()
-        throwsLeftTV.text = dice.counter.throwCounter.toString()
+        roundsLeftTV.text = counter.roundCounter.toString()
+        throwsLeftTV.text = counter.throwCounter.toString()
 
         initializeChoiceButtons()
         initializeSumChoiceButtons()
@@ -102,7 +107,7 @@ class GameActivity : AppCompatActivity(){
 
         for(button in sumChoiceList) {
             //If a choice is already picked (after recreating activity), disable it
-            if(dice.chosenOptions.buttonList.contains(mapChoiceToInt[button])){
+            if(chosenOptions.buttonList.contains(mapChoiceToInt[button])){
                 button.alpha = .25f
                 button.isEnabled = false
             }
@@ -164,22 +169,22 @@ class GameActivity : AppCompatActivity(){
      * the throw button will be disabled meaning a choice has to be done.
      */
     private fun addThrowButtonFunctionality(){
-        if(dice.hasThrowsLeft()){
+        if(counter.hasThrowsLeft()){
             for(die in diceList){
                 if(die.isActivated){
                     val newDieVal = dice.throwDie()
-                    dice.updateDieValue(diceList, die, newDieVal)
+                    diceValues.replaceInArray(newDieVal, diceList.indexOf(die))
                     getWhiteDice(die, newDieVal)
                     die.isActivated = false
                 }
             }
-            dice.counter.decreaseThrows()
-            throwsLeftTV.text = dice.counter.throwCounter.toString()
+            counter.decreaseThrows()
+            throwsLeftTV.text = counter.throwCounter.toString()
         }
 
-        if(!dice.hasThrowsLeft()){
+        if(!counter.hasThrowsLeft()){
             for (die in diceList){
-                getWhiteDice(die, dice.diceValues.diceValueArray[diceList.indexOf(die)])
+                getWhiteDice(die, diceValues.diceValueArray[diceList.indexOf(die)])
             }
             throwButton.isClickable = false
             throwButton.alpha = .5f
@@ -193,9 +198,9 @@ class GameActivity : AppCompatActivity(){
     private fun addDieFunctionality(die: ImageView){
         die.isActivated = !die.isActivated
         if (die.isActivated){
-            getGreyDice(die, dice.diceValues.diceValueArray[diceList.indexOf(die)])
+            getGreyDice(die, diceValues.diceValueArray[diceList.indexOf(die)])
         } else {
-            getWhiteDice(die, dice.diceValues.diceValueArray[diceList.indexOf(die)])
+            getWhiteDice(die, diceValues.diceValueArray[diceList.indexOf(die)])
         }
     }
 
@@ -238,7 +243,7 @@ class GameActivity : AppCompatActivity(){
     private fun throwAllDice(){
         for(die in diceList){
             val newDieVal = dice.throwDie()
-            dice.diceValues.replaceInArray(newDieVal, diceList.indexOf(die))
+            diceValues.replaceInArray(newDieVal, diceList.indexOf(die))
             getWhiteDice(die, newDieVal)
         }
     }
@@ -254,16 +259,16 @@ class GameActivity : AppCompatActivity(){
         for (die in diceList){
             //If LOW is chosen
             if(mapChoiceToInt[button]!! == 3) {
-                if(die.isActivated && dice.diceValues.diceValueArray[diceList.indexOf(die)] <= 3) {
-                    dice.addToDieSum(dice.diceValues.diceValueArray[diceList.indexOf(die)])
-                } else if(die.isActivated && dice.diceValues.diceValueArray[diceList.indexOf(die)] > 3){
+                if(die.isActivated && diceValues.diceValueArray[diceList.indexOf(die)] <= 3) {
+                    dice.addToDieSum(diceValues.diceValueArray[diceList.indexOf(die)])
+                } else if(die.isActivated && diceValues.diceValueArray[diceList.indexOf(die)] > 3){
                     //A die with value >3 is chosen, invalid for option LOW
                     validDice = false
                 }
             }
             //Else get value of chosen dice
             else if(die.isActivated) {
-                dice.addToDieSum(dice.diceValues.diceValueArray[diceList.indexOf(die)])
+                dice.addToDieSum(diceValues.diceValueArray[diceList.indexOf(die)])
             }
         }
 
@@ -275,14 +280,14 @@ class GameActivity : AppCompatActivity(){
         dice.resetDieSum()
 
         //Go to ResultsActivity if the game is finished
-        if(!dice.hasRoundsLeft()){
+        if(!counter.hasRoundsLeft()){
             val i = Intent(this, ResultsActivity::class.java)
             var arr = ArrayList<Int>()
-            for(score in dice.scoreboard.scores){
+            for(score in scoreboard.scores){
                 arr.add(score)
             }
             i.putExtra("score", arr)
-            i.putExtra("chosenOption", dice.chosenOptions.buttonList)
+            i.putExtra("chosenOption", chosenOptions.buttonList)
             startActivity(i)
             finish()
         }
@@ -294,19 +299,19 @@ class GameActivity : AppCompatActivity(){
      * be used again. Reset throw button, reset throws and goes to next round.
      */
     private fun endTurn(button: AppCompatButton){
-        dice.scoreboard.addScore(dice.getDieSum())
-        dice.chosenOption.add(mapChoiceToInt[button]!!)
-        dice.chosenOptions.addChoice(mapChoiceToInt[button]!!)
+        scoreboard.addScore(dice.getDieSum())
+        chosenOption.add(mapChoiceToInt[button]!!)
+        chosenOptions.addChoice(mapChoiceToInt[button]!!)
         button.isClickable = false
         button.alpha = .25f
         throwButton.isClickable = true
         throwButton.alpha = 1f
-        dice.counter.decreaseRounds()
-        roundsLeftTV.text = dice.counter.roundCounter.toString()
+        counter.decreaseRounds()
+        roundsLeftTV.text = counter.roundCounter.toString()
         setDiceActivatedFalse()
         throwAllDice()
-        dice.counter.resetThrows()
-        throwsLeftTV.text = dice.counter.throwCounter.toString()
+        counter.resetThrows()
+        throwsLeftTV.text = counter.throwCounter.toString()
     }
 
     /**
@@ -315,21 +320,21 @@ class GameActivity : AppCompatActivity(){
      */
     private fun restoreState(savedInstanceState: Bundle?) : Boolean {
         if(savedInstanceState != null){
-            dice.counter = savedInstanceState.getParcelable(COUNTER_KEY)!!
-            dice.diceValues = savedInstanceState.getParcelable(DICE_VALUE_KEY)!!
-            dice.chosenOptions = savedInstanceState.getParcelable(CHOSEN_OPTIONS_KEY)!!
-            dice.scoreboard = savedInstanceState.getParcelable(SCOREBOARD_KEY)!!
+            counter = savedInstanceState.getParcelable(COUNTER_KEY)!!
+            diceValues = savedInstanceState.getParcelable(DICE_VALUE_KEY)!!
+            chosenOptions = savedInstanceState.getParcelable(CHOSEN_OPTIONS_KEY)!!
+            scoreboard = savedInstanceState.getParcelable(SCOREBOARD_KEY)!!
 
-            roundsLeftTV.text = dice.counter.roundCounter.toString()
-            throwsLeftTV.text = dice.counter.throwCounter.toString()
+            roundsLeftTV.text = counter.roundCounter.toString()
+            throwsLeftTV.text = counter.throwCounter.toString()
 
-            if(!dice.hasThrowsLeft()){
+            if(!counter.hasThrowsLeft()){
                 throwButton.alpha = .25f
                 throwButton.isClickable = false
             }
 
             diceList.forEachIndexed { index, imageButton ->
-                getWhiteDice(imageButton, dice.diceValues.diceValueArray[index])
+                getWhiteDice(imageButton, diceValues.diceValueArray[index])
             }
             return true
         }
@@ -342,10 +347,10 @@ class GameActivity : AppCompatActivity(){
      */
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable(COUNTER_KEY, dice.counter)
-        outState.putParcelable(DICE_VALUE_KEY, dice.diceValues)
-        outState.putParcelable(CHOSEN_OPTIONS_KEY, dice.chosenOptions)
-        outState.putParcelable(SCOREBOARD_KEY, dice.scoreboard)
+        outState.putParcelable(COUNTER_KEY, counter)
+        outState.putParcelable(DICE_VALUE_KEY, diceValues)
+        outState.putParcelable(CHOSEN_OPTIONS_KEY, chosenOptions)
+        outState.putParcelable(SCOREBOARD_KEY, scoreboard)
     }
 
     companion object {

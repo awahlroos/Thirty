@@ -5,17 +5,11 @@ import java.util.Random
 
 /**
  * Dice
- * Class responsible for handling changes of dice values. Also holds the other model classes as
- * they are dependent of this class in order to work as intended.
+ * Class responsible for handling changes of dice values and calculations.
  */
 class Dice {
 
     private var dieSum = 0
-    var counter = Counter()
-    var chosenOptions = ChosenOptions()
-    var diceValues = DiceValue()
-    var chosenOption = ArrayList<Int>()
-    var scoreboard = Scoreboard()
 
     fun getDieSum():Int {
         return dieSum
@@ -43,17 +37,5 @@ class Dice {
     fun throwDie():Int {
         //Random in Kotlin generated the same sequence, therefore Java's Random is used
         return Random().nextInt(6)+1
-    }
-
-    fun hasRoundsLeft():Boolean {
-        return counter.roundCounter > 0
-    }
-
-    fun hasThrowsLeft():Boolean {
-        return counter.throwCounter > 0
-    }
-
-    fun updateDieValue(diceList: List<ImageButton>, die:ImageButton, newDieVal:Int){
-        diceValues.replaceInArray(newDieVal, diceList.indexOf(die))
     }
 }

@@ -26,6 +26,14 @@ class Counter() : Parcelable{
         throwCounter = 2
     }
 
+    fun hasRoundsLeft():Boolean {
+        return roundCounter > 0
+    }
+
+    fun hasThrowsLeft():Boolean {
+        return throwCounter > 0
+    }
+
     constructor(parcel: Parcel) : this() {
         roundCounter = parcel.readInt()
         throwCounter = parcel.readInt()
