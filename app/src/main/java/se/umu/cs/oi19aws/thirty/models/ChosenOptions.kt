@@ -1,9 +1,13 @@
-package se.umu.cs.oi19aws.thirty
+package se.umu.cs.oi19aws.thirty.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import android.util.Log
 
+/**
+ * ChosenOptions
+ * Class responsible for storing which options (LOW,3,4,..,12) that are already chosen, as they
+ * can only be chosen once per game
+ */
 class ChosenOptions() : Parcelable {
 
     var buttonList = ArrayList<Int>()

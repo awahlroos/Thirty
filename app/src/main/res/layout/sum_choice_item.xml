@@ -12,7 +12,6 @@
         android:background="@drawable/sum_choice_bg"
         android:backgroundTint="@color/light_gray"
         android:fontFamily="@font/montserratblack"
-        android:text="X"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

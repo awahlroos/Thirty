@@ -1,8 +1,12 @@
-package se.umu.cs.oi19aws.thirty
+package se.umu.cs.oi19aws.thirty.models
 
 import android.os.Parcel
 import android.os.Parcelable
 
+/**
+ * Scoreboard
+ * Class responsible for saving scores for each round
+ */
 class Scoreboard() : Parcelable{
 
     var scores = ArrayList<Int>()

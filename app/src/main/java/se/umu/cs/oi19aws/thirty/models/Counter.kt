@@ -1,8 +1,12 @@
-package se.umu.cs.oi19aws.thirty
+package se.umu.cs.oi19aws.thirty.models
 
 import android.os.Parcel
 import android.os.Parcelable
 
+/**
+ * Counter
+ * Class responsible for handling the throws and rounds counter
+ */
 class Counter() : Parcelable{
 
     var roundCounter = 10

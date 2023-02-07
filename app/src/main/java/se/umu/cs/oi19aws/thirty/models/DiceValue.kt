@@ -1,9 +1,12 @@
-package se.umu.cs.oi19aws.thirty
+package se.umu.cs.oi19aws.thirty.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import android.util.Log
 
+/**
+ * DiceValue
+ * Class responsible for storing the value of the dice currently on the screen
+ */
 class DiceValue() : Parcelable {
 
     var diceValueArray = IntArray(6)
@@ -19,7 +22,6 @@ class DiceValue() : Parcelable {
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeIntArray(diceValueArray)
-        //parcel.writeArray(arrayOf(diceValueArray))
     }
 
     override fun describeContents(): Int {

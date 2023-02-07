@@ -20,22 +20,9 @@
     <string name="results">Results</string>
     <string name="choice">(for %1$s)</string>
     <string name="rounds">Round %1$d - (%2$s):</string>
-    <!--
-    <string name="round_1">Round 1:</string>
-    <string name="round_2">Round 2:</string>
-    <string name="round_3">Round 3:</string>
-    <string name="round_4">Round 4:</string>
-    <string name="round_5">Round 5:</string>
-    <string name="round_6">Round 6:</string>
-    <string name="round_7">Round 7:</string>
-    <string name="round_8">Round 8:</string>
-    <string name="round_9">Round 9:</string>
-    <string name="round_10">Round 10:</string>
-    -->
     <string name="dots">.........</string>
     <string name="total">Total:</string>
     <string name="play_again">Play again</string>
-
-
+    <string name="round_error">Round number error:</string>
 
 </resources>
