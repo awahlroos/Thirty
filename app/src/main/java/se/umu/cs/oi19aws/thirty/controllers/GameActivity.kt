@@ -249,7 +249,7 @@ class GameActivity : AppCompatActivity(){
     }
 
     /**
-     * addSumChoiceFuncionality(AppCompatButton)
+     * addSumChoiceFunctionality(AppCompatButton)
      * Adds logic to handle the user's request of picking a sum choice.
      * If the LOW option is chosen, the function assures that all chosen dice are less than
      * or equal 3. Otherwise collect the sum of the dice and verify it is a valid combination.
@@ -282,7 +282,7 @@ class GameActivity : AppCompatActivity(){
         //Go to ResultsActivity if the game is finished
         if(!counter.hasRoundsLeft()){
             val i = Intent(this, ResultsActivity::class.java)
-            var arr = ArrayList<Int>()
+            val arr = ArrayList<Int>()
             for(score in scoreboard.scores){
                 arr.add(score)
             }

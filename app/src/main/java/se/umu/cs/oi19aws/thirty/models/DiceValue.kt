@@ -2,7 +2,6 @@ package se.umu.cs.oi19aws.thirty.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import android.widget.ImageButton
 
 /**
  * DiceValue

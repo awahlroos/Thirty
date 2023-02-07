@@ -1,6 +1,5 @@
 package se.umu.cs.oi19aws.thirty.models
 
-import android.widget.ImageButton
 import java.util.Random
 
 /**

@@ -37,7 +37,7 @@ class ResultsActivity : AppCompatActivity() {
         val playAgainButton = findViewById<AppCompatButton>(R.id.play_again_button)
 
         //Set listener on play again button, making it start a new GameActivity to play again
-        playAgainButton.setOnClickListener(){
+        playAgainButton.setOnClickListener{
             val i = Intent(this, GameActivity::class.java)
             startActivity(i)
             finish()
