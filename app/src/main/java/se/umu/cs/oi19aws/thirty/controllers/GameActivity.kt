@@ -24,6 +24,7 @@ class GameActivity : AppCompatActivity(){
     private var diceValues = DiceValue()
     private var chosenOption = ArrayList<Int>()
     private var scoreboard = Scoreboard()
+    private var activeOptions = ActiveOptions()
 
     private lateinit var throwButton:AppCompatButton
 
@@ -176,6 +177,7 @@ class GameActivity : AppCompatActivity(){
                     diceValues.replaceInArray(newDieVal, diceList.indexOf(die))
                     getWhiteDice(die, newDieVal)
                     die.isActivated = false
+                    activeOptions.replaceInArray(0, diceList.indexOf(die))
                 }
             }
             counter.decreaseThrows()
@@ -199,8 +201,10 @@ class GameActivity : AppCompatActivity(){
         die.isActivated = !die.isActivated
         if (die.isActivated){
             getGreyDice(die, diceValues.diceValueArray[diceList.indexOf(die)])
+            activeOptions.replaceInArray(1, diceList.indexOf(die))
         } else {
             getWhiteDice(die, diceValues.diceValueArray[diceList.indexOf(die)])
+            activeOptions.replaceInArray(0, diceList.indexOf(die))
         }
     }
 
@@ -273,7 +277,7 @@ class GameActivity : AppCompatActivity(){
         }
 
         //A correct sum for the chosen option
-        if(dice.checkSumChoice(mapChoiceToInt[button]!!, dice.getDieSum()) && validDice) {
+        if(dice.checkSumChoice(mapChoiceToInt[button]!!) && validDice) {
             endTurn(button)
         }
 
@@ -299,9 +303,10 @@ class GameActivity : AppCompatActivity(){
      * be used again. Reset throw button, reset throws and goes to next round.
      */
     private fun endTurn(button: AppCompatButton){
-        scoreboard.addScore(dice.getDieSum())
+        scoreboard.addScore(dice.getPoints())
         chosenOption.add(mapChoiceToInt[button]!!)
         chosenOptions.addChoice(mapChoiceToInt[button]!!)
+        activeOptions.resetArray()
         button.isClickable = false
         button.alpha = .25f
         throwButton.isClickable = true
@@ -324,6 +329,7 @@ class GameActivity : AppCompatActivity(){
             diceValues = savedInstanceState.getParcelable(DICE_VALUE_KEY)!!
             chosenOptions = savedInstanceState.getParcelable(CHOSEN_OPTIONS_KEY)!!
             scoreboard = savedInstanceState.getParcelable(SCOREBOARD_KEY)!!
+            activeOptions = savedInstanceState.getParcelable(ACTIVE_OPTIONS_KEY)!!
 
             roundsLeftTV.text = counter.roundCounter.toString()
             throwsLeftTV.text = counter.throwCounter.toString()
@@ -334,7 +340,13 @@ class GameActivity : AppCompatActivity(){
             }
 
             diceList.forEachIndexed { index, imageButton ->
-                getWhiteDice(imageButton, diceValues.diceValueArray[index])
+                if(activeOptions.activeArray[index] == 1){
+                    imageButton.isActivated = true
+                    getGreyDice(imageButton, diceValues.diceValueArray[index])
+                } else {
+                    imageButton.isActivated = false
+                    getWhiteDice(imageButton, diceValues.diceValueArray[index])
+                }
             }
             return true
         }
@@ -351,6 +363,7 @@ class GameActivity : AppCompatActivity(){
         outState.putParcelable(DICE_VALUE_KEY, diceValues)
         outState.putParcelable(CHOSEN_OPTIONS_KEY, chosenOptions)
         outState.putParcelable(SCOREBOARD_KEY, scoreboard)
+        outState.putParcelable(ACTIVE_OPTIONS_KEY, activeOptions)
     }
 
     companion object {
@@ -358,5 +371,6 @@ class GameActivity : AppCompatActivity(){
         private const val DICE_VALUE_KEY = "GameActivity.DiceValue"
         private const val CHOSEN_OPTIONS_KEY = "GameActivity.ChosenOptions"
         private const val SCOREBOARD_KEY = "GameActivity.Scoreboard"
+        private const val ACTIVE_OPTIONS_KEY = "GameActivity.ActiveOptions"
     }
 }
